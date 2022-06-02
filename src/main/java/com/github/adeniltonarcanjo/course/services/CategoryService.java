@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.adeniltonarcanjo.course.entities.Category;
-import com.github.adeniltonarcanjo.course.entities.Order;
 import com.github.adeniltonarcanjo.course.repositories.CategoryRepository;
-import com.github.adeniltonarcanjo.course.repositories.OrderRepository;
 
 @Service
 public class CategoryService {

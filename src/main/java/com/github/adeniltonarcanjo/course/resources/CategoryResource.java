@@ -19,17 +19,17 @@ import com.github.adeniltonarcanjo.course.services.CategoryService;
 public class CategoryResource {
 	
 	@Autowired
-	private CategoryService categoryservice;
+	private CategoryService service;
 	
 	@GetMapping
 	public ResponseEntity<List<Category>> findAll(){
-		List<Category> list = categoryservice.findAll();			
+		List<Category> list = service.findAll();			
 		return ResponseEntity.ok().body(list) ;
 	}
 	
 	@GetMapping(value="/{id}")
 	public ResponseEntity<Category> findById(@PathVariable Long id){		
-		Category orderObj = categoryservice.findById(id);
-		return ResponseEntity.ok().body(orderObj) ;
+		Category obj = service.findById(id);
+		return ResponseEntity.ok().body(obj) ;
 	}
 }
