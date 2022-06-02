@@ -12,26 +12,23 @@ import org.springframework.web.bind.annotation.RestController;
 import com.github.adeniltonarcanjo.course.entities.User;
 import com.github.adeniltonarcanjo.course.services.UserService;
 
-
-
 @RestController
-@RequestMapping(value="/users")
+@RequestMapping(value = "/users")
 public class UserResourse {
-	
+
 	@Autowired
-	UserService userservice;
-	
+	private UserService userservice;
+
 	@GetMapping
-	public ResponseEntity<List<User>> findAll(){
-		List<User> list = userservice.findAll();			
-		return ResponseEntity.ok().body(list) ;
+	public ResponseEntity<List<User>> findAll() {
+		List<User> list = userservice.findAll();
+		return ResponseEntity.ok().body(list);
 	}
-	
-	@GetMapping(value="/{id}")
-	public ResponseEntity<User> findById(@PathVariable Long id){		
+
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<User> findById(@PathVariable Long id) {
 		User userObj = userservice.findById(id);
-		return ResponseEntity.ok().body(userObj) ;
+		return ResponseEntity.ok().body(userObj);
 	}
-	
 
 }

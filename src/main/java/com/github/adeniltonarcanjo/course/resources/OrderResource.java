@@ -12,24 +12,22 @@ import org.springframework.web.bind.annotation.RestController;
 import com.github.adeniltonarcanjo.course.entities.Order;
 import com.github.adeniltonarcanjo.course.services.OrderService;
 
-
-
 @RestController
-@RequestMapping(value="/orders")
+@RequestMapping(value = "/orders")
 public class OrderResource {
-	
+
 	@Autowired
-	OrderService orderservice;
-	
+	private OrderService orderservice;
+
 	@GetMapping
-	public ResponseEntity<List<Order>> findAll(){
-		List<Order> list = orderservice.findAll();			
-		return ResponseEntity.ok().body(list) ;
+	public ResponseEntity<List<Order>> findAll() {
+		List<Order> list = orderservice.findAll();
+		return ResponseEntity.ok().body(list);
 	}
-	
-	@GetMapping(value="/{id}")
-	public ResponseEntity<Order> findById(@PathVariable Long id){		
+
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<Order> findById(@PathVariable Long id) {
 		Order orderObj = orderservice.findById(id);
-		return ResponseEntity.ok().body(orderObj) ;
+		return ResponseEntity.ok().body(orderObj);
 	}
 }
