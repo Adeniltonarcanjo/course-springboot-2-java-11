@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Profile;
 import com.github.adeniltonarcanjo.course.entities.Category;
 import com.github.adeniltonarcanjo.course.entities.Order;
 import com.github.adeniltonarcanjo.course.entities.OrderItem;
+import com.github.adeniltonarcanjo.course.entities.Payment;
 import com.github.adeniltonarcanjo.course.entities.Product;
 import com.github.adeniltonarcanjo.course.entities.User;
 import com.github.adeniltonarcanjo.course.entities.enums.OrderStatus;
@@ -35,7 +36,7 @@ public class TestConfig implements CommandLineRunner {
 
 	@Autowired
 	private ProductRepository productRepository;
-	
+
 	@Autowired
 	private OrderItemRepository orderItemRepository;
 
@@ -66,24 +67,26 @@ public class TestConfig implements CommandLineRunner {
 		categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
 
 		productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
-		
+
 		p1.getCategories().add(cat2);
 		p2.getCategories().add(cat1);
 		p2.getCategories().add(cat3);
 		p3.getCategories().add(cat3);
 		p4.getCategories().add(cat3);
 		p5.getCategories().add(cat2);
-		
+
 		productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
-		
-		
+
 		OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice());
 		OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice());
 		OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice());
 		OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
-		
-		
-		orderItemRepository.saveAll(Arrays.asList(oi1,oi2,oi3,oi4));
+
+		orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
+
+		Payment pay1 = new Payment(null, Instant.parse("2019-06-20T19:53:07Z"), o1);
+		o1.setPayment(pay1);
+		orderRepository.save(o1);
 
 	}
 
